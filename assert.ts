@@ -9,3 +9,8 @@ export function assert(test: unknown, msg = "") : asserts test {
 		throw new AssertionError(msg);
 	}
 }
+
+export function asNonNull<T>(value: T|unknown|null) {
+	assert(value !== null && value !== undefined);
+	return value as T;
+}
