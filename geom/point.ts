@@ -1,4 +1,4 @@
-import { assert } from './assert.js';
+import { assert } from '../assert.js';
 
 export interface IPoint {
 	x: number;
@@ -92,5 +92,13 @@ export class Point implements IPoint {
 
 	static equals(a: IPoint, b: IPoint) {
 		return a.x === b.x && a.y === b.y;
+	}
+
+	static length(p: IPoint) {
+		return Math.sqrt(p.x * p.x + p.y * p.y);
+	}
+
+	length() {
+		return Point.length(this);
 	}
 }
