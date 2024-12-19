@@ -10,7 +10,7 @@ export function assert(test: unknown, msg = "") : asserts test {
 	}
 }
 
-export function asNonNull<T>(value: T|unknown|null) {
-	assert(value !== null && value !== undefined);
-	return value as T;
+export function notNull<T>(value?: T) : NonNullable<T> {
+	assert(value !== null && value !== undefined, `Expected value to be non-null and defined, but was ${value}`);
+	return value;
 }
