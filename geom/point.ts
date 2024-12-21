@@ -15,6 +15,7 @@ export class Point implements IPoint {
 		this.y = y;
 	}
 	
+	// TODO: rename to turnCcw() to indicate that this is only right turns
 	/**
 	 * @param {*} degrees must be a multiple of 90. Positive: rotate left. Negative: rotate right
 	 * returns a new Point()
@@ -23,6 +24,7 @@ export class Point implements IPoint {
 		return Point.rotate(this, degrees);
 	}
 
+	// TODO: rename to turnCcw() to indicate that this is only right turns
 	static rotate(p: IPoint, degrees: number) {
 		const { x, y } = p;
 		switch((degrees + 360) % 360) {
@@ -125,5 +127,18 @@ export class Point implements IPoint {
 
 	length() {
 		return Point.length(this);
+	}
+
+	// TODO: possible alternative name: inside
+	/** 
+	 * returns true if the other point is larger than 0,0 and smaller than this point.
+	 * If the current points coordinates are negative, this will always return false.
+	 */
+	static contains(self: IPoint, other: IPoint) {
+		return (other.x >= 0 && other.y >= 0 && other.x < self.x && other.y < self.y);
+	}
+
+	contains(other: IPoint) {
+		return Point.contains(this, other);
 	}
 }
