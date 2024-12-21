@@ -34,14 +34,39 @@ export class Point implements IPoint {
 		}
 	}
 
+	/** will later be renamed to mul */
+	static times(a: IPoint, b: IPoint) {
+		return new Point(a.x * b.x, a.y * b.y);
+	}
+
+	/** will later be renamed to mul */
+	times(b: IPoint) {
+		return Point.times(this, b);
+	}
+
+	/**
+	Scale the vector by a scalar value
+	returns a new Point
+ 	*/	
+	scale(val: number) {
+		return Point.scale(this, val);
+	}
+
+	static scale(p: IPoint, val: number) {
+		return new Point(p.x * val, p.y * val);
+	}
+
 	/**
 		Scale the vector
 		returns a new Point
- 	*/
+		@deprecated use scale, so that we can free this up for multiplying by another point 
+ 	*/	
 	mul(val: number) {
 		return Point.mul(this, val);
 	}
 
+
+	/** @deprecated use scale */
 	static mul(p: IPoint, val: number) {
 		return new Point(p.x * val, p.y * val);
 	}
