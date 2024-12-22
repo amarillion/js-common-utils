@@ -17,7 +17,7 @@ export const randomIntBetween = (a: number, b: number, prng = Math.random) => ra
 /**
  * Random number generator using a power law distribution.
  * Generates numbers between 0 and 1, with numbers close to 0 more likely.
- * 
+ *
  * @param {number} gamma
  * @return {number}
  */
@@ -64,14 +64,14 @@ export function shuffle<T>(array: T[], prng = Math.random) {
 	for (let i = len - 1; i > 0; i--) {
 		const n = randomInt(i + 1, prng);
 		
-		[array[n], array[i]] = [array[i], array[n]];
+		[ array[n], array[i] ] = [ array[i], array[n] ];
 	}
 	return array;
 }
 
 export function randomBytes(num: number, prng = Math.random) {
 	const data = new Int8Array(num);
-	for(let i = 0; i < num; ++i) {
+	for (let i = 0; i < num; ++i) {
 		data[i] = randomInt(256, prng);
 	}
 	return data;
@@ -88,8 +88,8 @@ export function randomize(prng = Math.random) {
 		randomInt: (n: number) => randomInt(n, prng),
 		randomIntBetween: (a: number, b: number) => randomIntBetween(a, b, prng),
 		pickOne: <T>(array: T[]) => pickOne(array, prng),
-		pickSome: <T>(array: T[], min = 1, max = 4) => pickSome(array, min, max, prng), 
-		//TODO other functions
+		pickSome: <T>(array: T[], min = 1, max = 4) => pickSome(array, min, max, prng),
+		// TODO other functions
 	};
 }
 
@@ -97,9 +97,9 @@ export function randomize(prng = Math.random) {
 // Source: this excellent answer on Stack Overflow:
 // https://stackoverflow.com/a/47593316/3306
 export function splitmix32(seed: number) {
-	return function() {
+	return function () {
 		seed |= 0; // bitwise OR ensures this is treated as an integer internally for performance.
-		seed = seed + 0x9e3779b9 | 0; // again, bitwise OR for performance 
+		seed = seed + 0x9e3779b9 | 0; // again, bitwise OR for performance
 		let t = seed ^ seed >>> 16;
 		t = Math.imul(t, 0x21f0aaad);
 		t = t ^ t >>> 15;

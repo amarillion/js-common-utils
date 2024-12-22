@@ -1,8 +1,7 @@
-
 interface IVec3 {
-	x: number;
-	y: number;
-	z: number;
+	x: number,
+	y: number,
+	z: number,
 }
 
 export class Vec3 implements IVec3 {
@@ -11,7 +10,7 @@ export class Vec3 implements IVec3 {
 	y: number;
 	z: number;
 
-	constructor (x: number, y: number, z: number) {
+	constructor(x: number, y: number, z: number) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -30,7 +29,7 @@ export class Vec3 implements IVec3 {
 		return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 	}
 
-	static dot_product(a: IVec3, b: IVec3) {
+	static dotProduct(a: IVec3, b: IVec3) {
 		return a.x * b.x + a.y * b.y + a.z * b.z;
 	}
 	

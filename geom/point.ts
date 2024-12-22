@@ -1,8 +1,8 @@
 import { assert } from '../assert.js';
 
 export interface IPoint {
-	x: number;
-	y: number;
+	x: number,
+	y: number,
 }
 
 export class Point implements IPoint {
@@ -27,11 +27,11 @@ export class Point implements IPoint {
 	// TODO: rename to turnCcw() to indicate that this is only right turns
 	static rotate(p: IPoint, degrees: number) {
 		const { x, y } = p;
-		switch((degrees + 360) % 360) {
+		switch ((degrees + 360) % 360) {
 			case 270: return new Point(-y, x);
 			case 180: return new Point(-x, -y);
-			case  90: return new Point(y, -x);
-			case   0: return new Point(x, y);
+			case 90: return new Point(y, -x);
+			case 0: return new Point(x, y);
 			default: assert(false, `Invalid value ${degrees}`);
 		}
 	}
@@ -49,7 +49,7 @@ export class Point implements IPoint {
 	/**
 	Scale the vector by a scalar value
 	returns a new Point
- 	*/	
+ 	*/
 	scale(val: number) {
 		return Point.scale(this, val);
 	}
@@ -61,12 +61,11 @@ export class Point implements IPoint {
 	/**
 		Scale the vector
 		returns a new Point
-		@deprecated use scale, so that we can free this up for multiplying by another point 
- 	*/	
+		@deprecated use scale, so that we can free this up for multiplying by another point
+ 	*/
 	mul(val: number) {
 		return Point.mul(this, val);
 	}
-
 
 	/** @deprecated use scale */
 	static mul(p: IPoint, val: number) {
@@ -75,7 +74,7 @@ export class Point implements IPoint {
 
 	/**
 	 * @param {*} p point to add to this
-	 * returns a new Point containing the sum 
+	 * returns a new Point containing the sum
 	 */
 	plus(p: IPoint) {
 		return Point.plus(this, p);
@@ -130,7 +129,7 @@ export class Point implements IPoint {
 	}
 
 	// TODO: possible alternative name: inside
-	/** 
+	/**
 	 * returns true if the other point is larger than 0,0 and smaller than this point.
 	 * If the current points coordinates are negative, this will always return false.
 	 */
