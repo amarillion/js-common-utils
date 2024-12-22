@@ -15,3 +15,15 @@
 export function clamp(n: number, min: number, max: number) {
 	return Math.max(min, Math.min(max, n));
 }
+
+
+// TODO: find shorter name...
+/**
+ * Rounds value to the nearest multiple.
+ * @param value returns this value rounded up or down. May be negative.
+ * @param multiple: must be a positive value 
+ */
+export function roundToMultiple(value: number, multiple: number) {
+	const result = Math.round(value / multiple) * multiple;
+	return result === 0 ? 0 : result; // This will remove any negative zeroes (-0)
+}
