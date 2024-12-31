@@ -93,17 +93,5 @@ export function randomize(prng = Math.random) {
 	};
 }
 
-// Stable random number generator
-// Source: this excellent answer on Stack Overflow:
-// https://stackoverflow.com/a/47593316/3306
-export function splitmix32(seed: number) {
-	return function () {
-		seed |= 0; // bitwise OR ensures this is treated as an integer internally for performance.
-		seed = seed + 0x9e3779b9 | 0; // again, bitwise OR for performance
-		let t = seed ^ seed >>> 16;
-		t = Math.imul(t, 0x21f0aaad);
-		t = t ^ t >>> 15;
-		t = Math.imul(t, 0x735a2d97);
-		return ((t = t ^ t >>> 15) >>> 0) / 4294967296;
-	};
-}
+// for backwards compatibility
+export { splitmix32 } from './random/seed.js';
