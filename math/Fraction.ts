@@ -1,22 +1,9 @@
-import { assert } from '../assert';
+import { assert } from '../assert.js';
+import { lcm, gcd } from './numbers.js';
 
 export interface FractionLike {
 	n: number;
 	d: number;
-}
-
-// TODO may be moved to 'numbers' module
-/** Calculate the greatest common divisor */
-export function gcd(a: number, b: number): number {
-	if (b === 0) return Math.abs(a);
-	return gcd(b, a % b);
-}
-
-
-// TODO may be moved to 'numbers' module
-/** Calculate the least common multiple */
-export function lcm(a: number, b: number): number {
-	return Math.abs(a * b) / gcd(a, b);
 }
 
 // written with ChatGPT
@@ -27,7 +14,7 @@ export class Fraction implements FractionLike {
 	/** denominator */
 	readonly d: number;
 
-	constructor(n: number, d: number) {
+	constructor(n: number, d: number = 1) {
 		assert(d !== 0, 'Denominator cannot be zero');
 
 		// Scale n and d to ensure they are integers
@@ -67,6 +54,10 @@ export class Fraction implements FractionLike {
 		return new Fraction(f1.n * f2.n, f1.d * f2.d);
 	}
 
+	static scale(f1: FractionLike, val: number): Fraction {
+		return new Fraction(f1.n * val, f1.d);
+	}
+
 	static div(f1: FractionLike, f2: FractionLike): Fraction {
 		assert(f2.n !== 0, 'Cannot divide by zero');
 		return new Fraction(f1.n * f2.d, f1.d * f2.n);
@@ -82,6 +73,10 @@ export class Fraction implements FractionLike {
 
 	mul(other: FractionLike): Fraction {
 		return Fraction.mul(this, other);
+	}
+
+	scale(other: number): Fraction {
+		return Fraction.scale(this, other);
 	}
 
 	div(other: FractionLike): Fraction {
