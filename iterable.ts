@@ -2,6 +2,11 @@ export function times<T>(val: T, num: number): T[] {
 	return new Array(num).fill(val);
 }
 
+// Potential alternate name: iota (like in Dlang)
+export function range(num: number): number[] {
+	return new Array(num).fill(0).map((val, idx: number) => idx);
+}
+
 export function initArray<T>(val: (idx: number) => T, num: number): T[] {
 	const result: T[] = [];
 	for(let i = 0; i < num; ++i) {
