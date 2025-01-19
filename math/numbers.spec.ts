@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { divisors, gcd, lcm } from './numbers';
+import { divisors, gcd, lcm } from './numbers.js';
 
 describe('Number functions', () => {
 
