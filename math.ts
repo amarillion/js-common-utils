@@ -25,3 +25,15 @@ export function roundToMultiple(value: number, multiple: number) {
 	const result = Math.round(value / multiple) * multiple;
 	return result === 0 ? 0 : result; // This will remove any negative zeroes (-0)
 }
+
+/**
+ * Checks that a number is between two bounds.
+ * 
+ * @param lowerInclusive lower bound, inclusive
+ * @param value 
+ * @param upperExclusive upper bound, exclusive
+ * @returns true if the number is between the bounds
+ */
+export function between(lowerInclusive: number, value: number, upperExclusive: number) {
+	return lowerInclusive <= value && value < upperExclusive;
+}

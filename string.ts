@@ -2,6 +2,28 @@ export function repeat(str: string, num: number) {
 	return new Array(num).fill(str).join('');
 }
 
+export function indentLines(text: string, prefix: string) {
+	return text.split('\n').map(line => `${prefix}${line}`).join('\n');
+}
+
+/**
+ * Indent the remaining text in line with the label using spaces.
+ * @param text multi-line text
+ * @param label used as prefix for the first line
+ * @returns formatted text
+ */
+export function formatAsDefinition(text: string, label: string) {
+	const lines = text.split('\n');
+	if (lines.length > 1) {
+		const prefix = repeat(' ', label.length);
+		const remainder = lines.slice(1).map(line => `${prefix}${line}`).join('\n');
+		return `${label}${lines[0]}\n${remainder}`;
+	}
+	else {
+		return `${label}${lines[0]}`;
+	}
+}
+
 /**
  * Finds the longest common substring between two strings (dynamic programming approach).
  * 
