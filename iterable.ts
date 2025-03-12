@@ -45,6 +45,14 @@ export function take<T>(count: number, generator: Generator<T>) {
 	return result;
 }
 
+// Turn a supplier function into an infinite generator
+type Supplier<T> = () => T;
+export function *infinite<T>(supplier: Supplier<T>) {
+	while(true) {
+		yield supplier();
+	}
+}
+
 export function sum(array: Iterable<number>) {
 	let result = 0;
 	for (const val of array) {
