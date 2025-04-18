@@ -3,25 +3,36 @@
  * Only difference is that get() returns a default value if key doesn't exist.
  */
 export class DefaultMap<K, V> {
-	
-	readonly defaultValue: V;
-	readonly supplier: () => V;
-	readonly useSupplier: boolean;
+
+	/** tagged union of two configuration options */
+	private readonly config: {
+		useSupplier: false,
+		defaultValue: V,
+	} | {
+		useSupplier: true,
+		supplier: () => V,
+	};
 
 	private _data = new Map<K, V>();
 
-	constructor(defaultValue: V|(() => V)) {
+	constructor(defaultValue: V | (() => V)) {
 		if (typeof defaultValue === 'function') {
-			this.supplier = defaultValue as () => V;
-			this.useSupplier = true;
+			this.config = {
+				useSupplier: true,
+				supplier: defaultValue as () => V,
+			};
 		}
-		else if (typeof(defaultValue) === 'object') {
-			this.supplier = () => structuredClone(defaultValue);
-			this.useSupplier = true;
+		else if (typeof (defaultValue) === 'object') {
+			this.config = {
+				useSupplier: true,
+				supplier: () => structuredClone(defaultValue),
+			};
 		}
 		else {
-			this.defaultValue = defaultValue;
-			this.useSupplier = false;
+			this.config = {
+				useSupplier: false,
+				defaultValue,
+			};
 		}
 	}
 
@@ -37,14 +48,14 @@ export class DefaultMap<K, V> {
 		if (this._data.has(key)) {
 			return this._data.get(key)!;
 		}
-		else { 
-			if (this.useSupplier) {
-				const copy = this.supplier();
+		else {
+			if (this.config.useSupplier) {
+				const copy = this.config.supplier();
 				this._data.set(key, copy);
 				return copy;
 			}
 			else {
-				return this.defaultValue;	
+				return this.config.defaultValue;
 			}
 		}
 	}
