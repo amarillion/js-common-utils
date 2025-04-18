@@ -26,7 +26,7 @@ export function formatAsDefinition(text: string, label: string) {
 
 /**
  * Finds the longest common substring between two strings (dynamic programming approach).
- * 
+ *
  * @param str1 - The first string.
  * @param str2 - The second string.
  * @returns An object containing the start index in str1, start index in str2, and the length of the overlap.

@@ -28,9 +28,9 @@ export function roundToMultiple(value: number, multiple: number) {
 
 /**
  * Checks that a number is between two bounds.
- * 
+ *
  * @param lowerInclusive lower bound, inclusive
- * @param value 
+ * @param value
  * @param upperExclusive upper bound, exclusive
  * @returns true if the number is between the bounds
  */

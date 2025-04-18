@@ -9,7 +9,7 @@ export function range(num: number): number[] {
 
 export function initArray<T>(val: (idx: number) => T, num: number): T[] {
 	const result: T[] = [];
-	for(let i = 0; i < num; ++i) {
+	for (let i = 0; i < num; ++i) {
 		result.push(val(i));
 	}
 	return result;
@@ -48,7 +48,7 @@ export function take<T>(count: number, generator: Generator<T>) {
 // Turn a supplier function into an infinite generator
 type Supplier<T> = () => T;
 export function *infinite<T>(supplier: Supplier<T>) {
-	while(true) {
+	while (true) {
 		yield supplier();
 	}
 }
@@ -63,15 +63,14 @@ export function sum(array: Iterable<number>) {
 
 /**
  * Type-safe variant for `array.filter(Boolean)`
- * 
+ *
  * Suppose you have an array of type (string | undefined)[]
  * With `array.filter(Boolean)`, undefined values will be filtered out but the resulting type remains the same.
  * Instead, `array.filter(Truthy)` will allow typeScript infer the type of the resulting expression as string[]
- * 
+ *
  * See: https://stackoverflow.com/questions/47632622/typescript-and-filter-boolean
  */
 export type Truthy<T> = T extends false | '' | 0 | null | undefined ? never : T; // from lodash
 export function truthy<T>(value: T): value is Truthy<T> {
 	return !!value;
 }
-

@@ -4,7 +4,6 @@ export function gcd(a: number, b: number): number {
 	return gcd(b, a % b);
 }
 
-
 /** Calculate the least common multiple */
 export function lcm(a: number, b: number): number {
 	return Math.abs(a * b) / gcd(a, b);

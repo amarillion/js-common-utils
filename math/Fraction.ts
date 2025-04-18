@@ -2,8 +2,8 @@ import { assert } from '../assert.js';
 import { lcm, gcd } from './numbers.js';
 
 export interface FractionLike {
-	n: number;
-	d: number;
+	n: number,
+	d: number,
 }
 
 // written with ChatGPT
